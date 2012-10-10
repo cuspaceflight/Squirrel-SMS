@@ -79,22 +79,6 @@ public class LocationUpdate extends Service {
                     sendSMS(phoneNumber, location, 0);
                 }
 
-            } else if (actionCode.toLowerCase().startsWith("latlong")) {
-
-                String coords = actionCode.substring(8);
-                String[] latlong = coords.split(",");
-
-                Intent mapIntent = new Intent(this, SquirrelSMS.class);
-                mapIntent.putExtra("lat", Float.parseFloat(latlong[0]));
-                mapIntent.putExtra("long", Float.parseFloat(latlong[1]));
-                mapIntent.putExtra("alt", Float.parseFloat(latlong[2]));
-                mapIntent.putExtra("accuracy", Float.parseFloat(latlong[3]));
-                mapIntent.putExtra("mobile", phoneNumber);
-                mapIntent.putExtra("time", System.currentTimeMillis());
-                mapIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(mapIntent);
-
             }
 
         }
